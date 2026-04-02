@@ -372,6 +372,7 @@
     background: var(--bg3);
     border: 1px solid var(--border);
     overflow: hidden;
+    border-radius: 24px;
   }
 
   .showreel-wrap iframe {
@@ -419,16 +420,18 @@
   .stats-bar {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
+    gap: 16px;
+    background: transparent;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
+    padding: 16px 0;
   }
   .stat-item {
     background: var(--bg2);
     padding: 48px 24px;
     text-align: center;
     transition: background 0.3s;
+    border-radius: 20px;
   }
   .stat-item:hover { background: var(--bg3); }
   .stat-num {
@@ -483,6 +486,7 @@
     position: relative;
     transition: border-color 0.3s, transform 0.3s;
     cursor: none;
+    border-radius: 24px;
   }
 
   .work-card:hover {
@@ -592,6 +596,8 @@
     width: 90vw;
     max-width: 1000px;
     position: relative;
+    border-radius: 24px;
+    overflow: hidden;
   }
 
   .modal-inner iframe {
@@ -638,6 +644,10 @@
     margin-bottom: 20px;
   }
 
+  .about-text {
+    padding-top: 36px;
+  }
+
   .about-text p strong {
     color: var(--white);
     font-weight: 400;
@@ -655,23 +665,27 @@
 
   .about-photo {
     position: relative;
-    width: 100%;
-    aspect-ratio: 4/5;
-    max-height: 560px;
+    width: min(100%, 620px);
+    aspect-ratio: 16/11;
+    max-height: 500px;
     margin-bottom: 40px;
-    overflow: visible;
+    overflow: hidden;
+    background: #050505;
+    border: 1px solid var(--border);
+    border-radius: 24px;
   }
   .about-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 16%;
     display: block;
-    border: 1px solid var(--border);
+    transform: scale(1.12);
+    transform-origin: center;
     filter: grayscale(15%);
-    transition: filter 0.4s ease;
+    transition: filter 0.4s ease, transform 0.4s ease;
   }
-  .about-photo:hover img { filter: grayscale(0%); }
+  .about-photo:hover img { filter: grayscale(0%); transform: scale(1.16); }
   .about-photo-accent {
     position: absolute;
     bottom: -12px;
@@ -685,15 +699,18 @@
   /* SKILLS */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    width: min(100%, 620px);
   }
 
   .skill-block {
     background: var(--bg3);
-    padding: 28px 24px;
+    padding: 32px 28px;
     border: 1px solid var(--border);
     transition: border-color 0.2s;
+    border-radius: 20px;
+    min-height: 230px;
   }
 
   .skill-block:hover { border-color: rgba(200,240,60,0.15); }
@@ -711,7 +728,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
 
   .skill-list li {
@@ -892,18 +909,26 @@
   .testi-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    gap: 16px;
+    background: transparent;
+    border: none;
   }
   .testi-card {
     background: var(--bg2);
     padding: 40px 32px;
     position: relative;
     overflow: hidden;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.22);
   }
-  .testi-card:hover { background: var(--bg3); }
+  .testi-card:hover {
+    background: var(--bg3);
+    transform: translateY(-4px);
+    border-color: rgba(200,240,60,0.14);
+    box-shadow: 0 22px 48px rgba(0,0,0,0.3);
+  }
   .testi-card::before {
     content: '\201C';
     position: absolute;
@@ -1005,6 +1030,7 @@
     section { padding: 80px 24px; }
     .hero { padding: 0 24px 60px; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-text { padding-top: 0; }
     .skills-grid { grid-template-columns: 1fr; }
     .exp-item { grid-template-columns: 1fr; gap: 12px; }
     .hero-bottom { flex-direction: column; gap: 40px; align-items: flex-start; }
@@ -1036,6 +1062,7 @@
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="resources.html" target="_blank" rel="noopener noreferrer">Resources</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
@@ -1241,14 +1268,14 @@
   <div class="section-label">003 — About</div>
   <div class="about-grid">
     <div class="about-left">
-      <div class="about-photo fade-in">
+      <div class="about-photo fade-in visible">
         <img src="photo.webp" alt="Sarthak Rawat" class="about-image">
         <div class="about-photo-accent"></div>
       </div>
-      <div class="about-highlight fade-in">
+      <div class="about-highlight fade-in visible">
         I think in<br><span>stories</span>,<br>not effects.
       </div>
-      <div class="skills-grid fade-in">
+      <div class="skills-grid fade-in visible">
         <div class="skill-block">
           <div class="skill-block-label">Motion & Editing</div>
           <ul class="skill-list">
@@ -1281,7 +1308,7 @@
         </div>
       </div>
     </div>
-    <div class="about-text fade-in">
+    <div class="about-text fade-in visible">
       <p>My journey started in <strong>graphic design</strong> — composition, typography, visual systems. Those principles didn't stay in design. They became the foundation of everything I do in motion.</p>
       <p>Most editors work with footage. I work with <strong>intent</strong>. I've been across the full pipeline — scripting, shoot setup, lighting, post-production, final delivery — which means I catch problems before they become problems, and I push ideas before the client knows to ask for more.</p>
       <p>Currently at <strong>Vinove Software & Services</strong>, turning complex software into motion that actually connects with people. Before that, I ran creative for 7 brands simultaneously at Digiron — building visual identities from scratch, not just executing briefs.</p>
@@ -1315,7 +1342,7 @@
       <div>
         <div class="exp-role">Creative Designer</div>
         <div class="exp-company">Digiron Marketing Agency</div>
-        <div class="exp-desc">Managed end-to-end motion and branded content across 7 brands spanning healthcare, education, lifestyle, and entertainment — <strong style="color:var(--white)">Aromasphere, Satinder Sartaaj India Tour, Apex Professional University, Hillwoods Academy, Unbeaten Sportswear, Manaaki Healthcare, and Vrinda Fertility</strong>. Each brand had a distinct voice and audience. I built the visual language for all of them — from social campaigns to event coverage — consistently meeting deadlines across every vertical simultaneously.</div>
+        <div class="exp-desc">Owned the creative output for <strong style="color:var(--white)">7 brands</strong> across healthcare, education, lifestyle, and entertainment, building <strong style="color:var(--white)">distinct visual systems</strong> that could scale across campaigns, social content, and live event coverage. It demanded <strong style="color:var(--white)">fast context-switching</strong>, strong taste, and consistent execution under pressure. I delivered work that stayed <strong style="color:var(--white)">sharp, brand-specific, and deadline-proof</strong> across every vertical at once.</div>
       </div>
     </div>
 
@@ -1498,6 +1525,6 @@
       a.addEventListener('click', () => navLinks.classList.remove('open'));
     });
   }
--e </script>
+</script>
 </body>
 </html>
