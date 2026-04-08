@@ -3,43 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sarthak Rawat — Motion Designer & Video Editor</title>
+<title>Sarthak Rawat &mdash; Motion Designer &amp; Video Editor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 <style>
-  @font-face {
-    font-family: 'Neue Montreal';
-    src: url('/fonts/NeueMontreal-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Neue Montreal';
-    src: url('/fonts/NeueMontreal-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Neue Montreal';
-    src: url('/fonts/NeueMontreal-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Neue Montreal';
-    src: url('/fonts/NeueMontreal-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-
   :root {
     --bg: #0a0a0a;
     --bg2: #111111;
@@ -49,7 +17,7 @@
     --accent: #c8f03c;
     --accent2: #ff4d1c;
     --border: rgba(255,255,255,0.06);
-    --font-display: 'Neue Montreal', 'DM Sans', sans-serif;
+    --font-display: 'DM Sans', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-mono: var(--font-body);
   }
@@ -68,7 +36,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    cursor: none;
+    cursor: default;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -76,6 +49,12 @@
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 1;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
   }
 
   /* Custom cursor */
@@ -485,8 +464,11 @@
     overflow: hidden;
     position: relative;
     transition: border-color 0.3s, transform 0.3s;
-    cursor: none;
+    cursor: pointer;
     border-radius: 24px;
+    width: 100%;
+    text-align: left;
+    appearance: none;
   }
 
   .work-card:hover {
@@ -584,7 +566,7 @@
     pointer-events: none;
     transition: opacity 0.3s;
     backdrop-filter: blur(8px);
-    cursor: none;
+    cursor: default;
   }
 
   .modal-overlay.active {
@@ -618,7 +600,7 @@
     font-size: 11px;
     letter-spacing: 0.15em;
     padding: 8px 16px;
-    cursor: none;
+    cursor: pointer;
     transition: all 0.2s;
   }
 
@@ -865,7 +847,7 @@
     color: var(--white);
     text-decoration: none;
     transition: all 0.3s;
-    cursor: none;
+    cursor: pointer;
   }
 
   .contact-link:hover {
@@ -987,6 +969,36 @@
     transform: translateY(0);
   }
 
+  @media (hover: hover) and (pointer: fine) {
+    body,
+    .contact-link,
+    .modal-close,
+    .work-card {
+      cursor: none;
+    }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .cursor,
+    .cursor-ring {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   /* HAMBURGER BUTTON */
   .nav-menu-btn {
     display: none;
@@ -1050,8 +1062,8 @@
 <!-- Modal -->
 <div class="modal-overlay" id="modal">
   <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal()">✕ &nbsp;Close</button>
-    <iframe id="modalFrame" src="" allowfullscreen allow="autoplay"></iframe>
+    <button class="modal-close" type="button" aria-label="Close video modal">&times; &nbsp;Close</button>
+    <iframe id="modalFrame" src="" title="Selected project video" allowfullscreen allow="autoplay"></iframe>
   </div>
 </div>
 
@@ -1076,12 +1088,12 @@
   <div class="hero-tag">Motion Designer & Video Editor</div>
   <h1>
     Sarthak<br>Rawat
-    <em>— crafting stories that move</em>
+    <em>&mdash; crafting stories that move</em>
   </h1>
   <div class="hero-bottom">
     <p class="hero-desc">
       I don't just edit footage.<br>
-      I build <strong>visual narratives with purpose</strong> — where every cut, every frame, every sound decision moves the audience exactly where it needs to go.
+      I build <strong>visual narratives with purpose</strong> &mdash; where every cut, every frame, every sound decision moves the audience exactly where it needs to go.
     </p>
     <div class="scroll-hint">
       <div class="scroll-line"></div>
@@ -1107,7 +1119,7 @@
     <div class="stat-label">Years Experience</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">∞</div>
+    <div class="stat-num">&infin;</div>
     <div class="stat-label">Frames Per Story</div>
   </div>
 </div>
@@ -1144,14 +1156,14 @@
 
 <!-- SHOWREEL -->
 <section class="showreel-section" id="showreel">
-  <div class="section-label">001 — STORIES IN MOTION</div>
+  <div class="section-label">001 &mdash; STORIES IN MOTION</div>
   <div class="section-title fade-in">THE SHOWREEL</div>
   <div class="showreel-wrap fade-in">
-    <iframe id="showreelFrame" src="https://www.youtube.com/embed/jxLzLvvID4c?rel=0&modestbranding=1" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-    <div class="showreel-placeholder" id="showreelCover" onclick="playShowreel()" style="cursor:none">
+    <iframe id="showreelFrame" src="https://www.youtube.com/embed/jxLzLvvID4c?rel=0&modestbranding=1" title="Sarthak Rawat showreel" loading="lazy" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    <button class="showreel-placeholder" id="showreelCover" type="button" aria-label="Play showreel 2025">
       <div class="play-btn"></div>
       <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)">Play Showreel 2025</p>
-    </div>
+    </button>
   </div>
 </section>
 
@@ -1159,7 +1171,7 @@
 
 <!-- WORK -->
 <section class="work-section" id="work">
-  <div class="section-label">002 — FEATURED WORK</div>
+  <div class="section-label">002 &mdash; FEATURED WORK</div>
   <div class="section-title fade-in">THE WORK</div>
 
   <!-- LONG FORM -->
@@ -1170,18 +1182,18 @@
     </div>
     <div class="work-grid">
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/u-P677zVe9Y?autoplay=1&rel=0')">
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/u-P677zVe9Y?autoplay=1&rel=0" aria-label="Open SaaS Awareness Film for Workstatus">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/u-P677zVe9Y?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <iframe src="https://www.youtube.com/embed/u-P677zVe9Y?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
           <div class="work-card-title">SaaS Awareness Film</div>
           <div class="work-card-meta">WORKSTATUS</div>
         </div>
-      </div>
+      </button>
 
-<div class="work-card" onclick="openModal('https://www.youtube.com/embed/nTszNhQQOHg?autoplay=1&rel=0')">
+<button class="work-card" type="button" data-video="https://www.youtube.com/embed/nTszNhQQOHg?autoplay=1&rel=0" aria-label="Open Podcast Film for ReadersBooksClub">
   <div class="work-card-video">
     <iframe src="https://www.youtube.com/embed/nTszNhQQOHg" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
     <div class="work-card-video-overlay">
@@ -1192,18 +1204,18 @@
     <div class="work-card-title">Podcast Film</div>
     <div class="work-card-meta">ReadersBooksClub</div>
   </div>
-</div>
+</button>
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/41OTJvjOMtw?autoplay=1&rel=0')">
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/41OTJvjOMtw?autoplay=1&rel=0" aria-label="Open Campaign Video for PixelCrayons">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/41OTJvjOMtw?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <iframe src="https://www.youtube.com/embed/41OTJvjOMtw?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
           <div class="work-card-title">Campaign Video</div>
           <div class="work-card-meta">PIXELCRAYONS</div>
         </div>
-      </div>
+      </button>
 
     </div>
   </div>
@@ -1216,49 +1228,49 @@
     </div>
     <div class="work-grid">
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/zHxI_-M1sOo?autoplay=1&rel=0')">
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/zHxI_-M1sOo?autoplay=1&rel=0" aria-label="Open India Tour Promo for Satinder Sartaaj">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/zHxI_-M1sOo?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <iframe src="https://www.youtube.com/embed/zHxI_-M1sOo?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
           <div class="work-card-title">India Tour Promo</div>
           <div class="work-card-meta">SATINDAR SARTAAJ</div>
         </div>
-      </div>
+      </button>
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/ULn82D31b24?autoplay=1&rel=0')">
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/ULn82D31b24?autoplay=1&rel=0" aria-label="Open Creative Showcase personal project">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/ULn82D31b24?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <iframe src="https://www.youtube.com/embed/ULn82D31b24?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
           <div class="work-card-title">Creative Showcase</div>
           <div class="work-card-meta">PERSONAL</div>
         </div>
-      </div>
+      </button>
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/PXAiUNwJIpE?autoplay=1&rel=0')">
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/PXAiUNwJIpE?autoplay=1&rel=0" aria-label="Open Brand Awareness Ad for PixelCrayons">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/PXAiUNwJIpE?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <iframe src="https://www.youtube.com/embed/PXAiUNwJIpE?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
           <div class="work-card-title">Brand Awareness Ad</div>
           <div class="work-card-meta">PIXELCRAYONS</div>
         </div>
-      </div>
+      </button>
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/Cpt7PXJ-Y8I?autoplay=1&rel=0')">
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/Cpt7PXJ-Y8I?autoplay=1&rel=0" aria-label="Open Social Media Reel for ValueCoders">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/Cpt7PXJ-Y8I?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <iframe src="https://www.youtube.com/embed/Cpt7PXJ-Y8I?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
           <div class="work-card-title">Social Media Reel</div>
           <div class="work-card-meta">VALUECODERS</div>
         </div>
-      </div>
+      </button>
 
     </div>
   </div>
@@ -1267,7 +1279,7 @@
 
 <!-- ABOUT -->
 <section class="about-section" id="about">
-  <div class="section-label">003 — About</div>
+  <div class="section-label">003 &mdash; About</div>
   <div class="about-grid">
     <div class="about-left">
       <div class="about-photo fade-in visible">
@@ -1311,9 +1323,9 @@
       </div>
     </div>
     <div class="about-text fade-in visible">
-      <p>My journey started in <strong>graphic design</strong> — composition, typography, visual systems. Those principles didn't stay in design. They became the foundation of everything I do in motion.</p>
-      <p>Most editors work with footage. I work with <strong>intent</strong>. I've been across the full pipeline — scripting, shoot setup, lighting, post-production, final delivery — which means I catch problems before they become problems, and I push ideas before the client knows to ask for more.</p>
-      <p>Currently at <strong>Vinove Software & Services</strong>, turning complex software into motion that actually connects with people. Before that, I ran creative for 7 brands simultaneously at Digiron — building visual identities from scratch, not just executing briefs.</p>
+      <p>My journey started in <strong>graphic design</strong> &mdash; composition, typography, visual systems. Those principles didn't stay in design. They became the foundation of everything I do in motion.</p>
+      <p>Most editors work with footage. I work with <strong>intent</strong>. I've been across the full pipeline &mdash; scripting, shoot setup, lighting, post-production, final delivery &mdash; which means I catch problems before they become problems, and I push ideas before the client knows to ask for more.</p>
+      <p>Currently at <strong>Vinove Software & Services</strong>, turning complex software into motion that actually connects with people. Before that, I ran creative for 7 brands simultaneously at Digiron &mdash; building visual identities from scratch, not just executing briefs.</p>
       <p>I believe the best motion design is <strong>invisible</strong>. The audience feels the emotion before they notice the craft. That's the standard I work to.</p>
     </div>
   </div>
@@ -1323,24 +1335,24 @@
 
 <!-- EXPERIENCE -->
 <section class="exp-section" id="experience">
-  <div class="section-label">004 — Experience</div>
+  <div class="section-label">004 &mdash; Experience</div>
   <div class="section-title fade-in">THE JOURNEY</div>
   <div class="exp-list">
 
     <div class="exp-item fade-in">
       <div class="exp-date">
-        Jul 2025 – Present<br>Noida
+        Jul 2025 &ndash; Present<br>Noida
         <div class="exp-current">Current</div>
       </div>
       <div>
         <div class="exp-role">Motion Graphic Designer</div>
         <div class="exp-company">Vinove Software & Services</div>
-        <div class="exp-desc">Vinove is the parent company behind three product brands — <strong style="color:var(--white)">Workstatus, PixelCrayons, and ValueCoders</strong>. Embedded across all three, I own the motion and visual communication pipeline: explainer videos, UI/UX walkthroughs, product demos, and marketing visuals. Every piece is built to make complex software feel intuitive and desirable — delivered consistently, on brief, on time.</div>
+        <div class="exp-desc">Vinove is the parent company behind three product brands &mdash; <strong style="color:var(--white)">Workstatus, PixelCrayons, and ValueCoders</strong>. Embedded across all three, I own the motion and visual communication pipeline: explainer videos, UI/UX walkthroughs, product demos, and marketing visuals. Every piece is built to make complex software feel intuitive and desirable &mdash; delivered consistently, on brief, on time.</div>
       </div>
     </div>
 
     <div class="exp-item fade-in">
-      <div class="exp-date">Oct 2024 – Jun 2025<br>Noida</div>
+      <div class="exp-date">Oct 2024 &ndash; Jun 2025<br>Noida</div>
       <div>
         <div class="exp-role">Creative Designer</div>
         <div class="exp-company">Digiron Marketing Agency</div>
@@ -1349,20 +1361,20 @@
     </div>
 
     <div class="exp-item fade-in">
-      <div class="exp-date">Jan 2023 – Oct 2024<br>Prayagraj</div>
+      <div class="exp-date">Jan 2023 &ndash; Oct 2024<br>Prayagraj</div>
       <div>
         <div class="exp-role">Creative Junior</div>
         <div class="exp-company">Digilok Media House</div>
-        <div class="exp-desc">Started from the ground up — handling shoots, lighting, studio setup, and post-production across documentaries, ads, and social content. This is where I learned that great editing starts before the camera rolls. The production instinct I built here shapes every project I take on today.</div>
+        <div class="exp-desc">Started from the ground up &mdash; handling shoots, lighting, studio setup, and post-production across documentaries, ads, and social content. This is where I learned that great editing starts before the camera rolls. The production instinct I built here shapes every project I take on today.</div>
       </div>
     </div>
 
     <div class="exp-item fade-in">
-      <div class="exp-date">Aug 2022 – Jan 2023<br>Prayagraj</div>
+      <div class="exp-date">Aug 2022 &ndash; Jan 2023<br>Prayagraj</div>
       <div>
         <div class="exp-role">Graphic Designer</div>
         <div class="exp-company">Selection Adda</div>
-        <div class="exp-desc">Where it started. Designed digital assets and web graphics with a focus on brand consistency — this is where I developed my eye for composition, typography, and visual systems that now drive my motion work.</div>
+        <div class="exp-desc">Where it started. Designed digital assets and web graphics with a focus on brand consistency &mdash; this is where I developed my eye for composition, typography, and visual systems that now drive my motion work.</div>
       </div>
     </div>
 
@@ -1373,7 +1385,7 @@
 
 <!-- TESTIMONIALS -->
 <section class="testi-section" id="testimonials">
-  <div class="section-label">005 — Kind Words</div>
+  <div class="section-label">005 &mdash; Kind Words</div>
   <div class="section-title fade-in">WHAT THEY SAY</div>
   <div class="testi-grid">
 
@@ -1389,7 +1401,7 @@
     </div>
 
     <div class="testi-card fade-in">
-      <p class="testi-quote">Healthcare content is difficult — it needs to be <strong>accurate, warm, and trustworthy</strong> all at once. Sarthak understood that without us having to over-explain. The reels he created for Vrinda Fertility consistently drove engagement and patient inquiries.</p>
+      <p class="testi-quote">Healthcare content is difficult &mdash; it needs to be <strong>accurate, warm, and trustworthy</strong> all at once. Sarthak understood that without us having to over-explain. The reels he created for Vrinda Fertility consistently drove engagement and patient inquiries.</p>
       <div class="testi-author">
         <div class="testi-avatar">A</div>
         <div>
@@ -1411,7 +1423,7 @@
     </div>
 
     <div class="testi-card fade-in">
-      <p class="testi-quote">Sarthak designed our digital assets with a <strong>level of consistency and attention to detail</strong> that made a real difference to how our brand was perceived online. He doesn't just execute — he thinks about the bigger picture.</p>
+      <p class="testi-quote">Sarthak designed our digital assets with a <strong>level of consistency and attention to detail</strong> that made a real difference to how our brand was perceived online. He doesn't just execute &mdash; he thinks about the bigger picture.</p>
       <div class="testi-author">
         <div class="testi-avatar">H</div>
         <div>
@@ -1429,69 +1441,85 @@
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
   <div class="contact-bg-text">CONTACT</div>
-  <div class="section-label">006 — Let's Talk</div>
+  <div class="section-label">006 &mdash; Let's Talk</div>
   <div class="section-title fade-in">GOT A PROJECT?</div>
-  <p class="contact-sub fade-in">Brand film, product explainer, social campaign — bring me the brief and I'll bring back something better than you imagined.</p>
+  <p class="contact-sub fade-in">Brand film, product explainer, social campaign &mdash; bring me the brief and I'll bring back something better than you imagined.</p>
   <div class="contact-links fade-in">
-    <a href="/cdn-cgi/l/email-protection#184b796a6c707973736a796f796c36777e7e717b717974587f75797174367b7775" class="contact-link primary">Send an Email</a>
+    <a href="mailto:sarthakrawat23609@gmail.com" class="contact-link primary">Send an Email</a>
     <a href="tel:09598723609" class="contact-link">Call / WhatsApp</a>
-    <a href="https://instagram.com/sarthakk_rawat_" target="_blank" class="contact-link">Instagram</a>
+    <a href="https://instagram.com/sarthakk_rawat_" target="_blank" rel="noopener noreferrer" class="contact-link">Instagram</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Sarthak Rawat — All rights reserved</p>
-  <p>Built with intention <span>·</span> Noida, India</p>
+  <p>&copy; 2026 Sarthak Rawat &mdash; All rights reserved</p>
+  <p>Built with intention <span>&middot;</span> Noida, India</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Cursor — smooth GPU-based tracking
+<script>
+  // Cursor tracking for fine pointers
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
+  const prefersCustomCursor = window.matchMedia('(hover: hover) and (pointer: fine)');
   let mx = -100, my = -100, rx = -100, ry = -100;
   let started = false;
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-    if (!started) { rx = mx; ry = my; started = true; }
-    cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
-  });
+  if (prefersCustomCursor.matches) {
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX;
+      my = e.clientY;
+      if (!started) { rx = mx; ry = my; started = true; }
+      cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+    });
 
-  (function animateRing() {
-    rx += (mx - rx - 18) * 0.1;
-    ry += (my - ry - 18) * 0.1;
-    ring.style.transform = `translate(${rx}px, ${ry}px)`;
-    requestAnimationFrame(animateRing);
-  })();
+    (function animateRing() {
+      rx += (mx - rx - 18) * 0.1;
+      ry += (my - ry - 18) * 0.1;
+      ring.style.transform = `translate(${rx}px, ${ry}px)`;
+      requestAnimationFrame(animateRing);
+    })();
+  }
 
   document.querySelectorAll('a, button, .work-card, .showreel-placeholder').forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
     el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
   });
 
-  // Showreel — click cover to autoplay inline
+  // Showreel
+  const showreelCover = document.getElementById('showreelCover');
   function playShowreel() {
-    document.getElementById('showreelCover').classList.add('hidden');
+    showreelCover.classList.add('hidden');
     document.getElementById('showreelFrame').src =
       'https://www.youtube.com/embed/jxLzLvvID4c?autoplay=1&rel=0&modestbranding=1';
   }
+  showreelCover.addEventListener('click', playShowreel);
 
   // Modal
+  const modal = document.getElementById('modal');
+  const modalFrame = document.getElementById('modalFrame');
+  const modalCloseBtn = document.querySelector('.modal-close');
+
   function openModal(url) {
-    document.getElementById('modalFrame').src = url;
-    document.getElementById('modal').classList.add('active');
+    modalFrame.src = url;
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    modalCloseBtn.focus();
   }
 
   function closeModal() {
-    document.getElementById('modal').classList.remove('active');
-    document.getElementById('modalFrame').src = '';
+    modal.classList.remove('active');
+    modalFrame.src = '';
     document.body.style.overflow = '';
   }
 
-  document.getElementById('modal').addEventListener('click', function(e) {
+  modalCloseBtn.addEventListener('click', closeModal);
+
+  document.querySelectorAll('.work-card').forEach(card => {
+    card.addEventListener('click', () => openModal(card.dataset.video));
+  });
+
+  modal.addEventListener('click', function(e) {
     if (e.target === this) closeModal();
   });
 
@@ -1524,7 +1552,10 @@
     });
     // Close menu on link click
     navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => navLinks.classList.remove('open'));
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
     });
   }
 </script>
