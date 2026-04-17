@@ -9,19 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --bg: #0b0b14;
-    --accent: #7c5cff;
-    --text: #f0edf8;
-    --text-muted: #8f89a8;
-    --card-bg: #141422;
-    --bg2: #10101b;
+    --bg: #0b0f19;
+    --accent: #5b8cff;
+    --text: #e6eaf2;
+    --text-muted: #9ca3af;
+    --card-bg: #121829;
+    --bg2: #0f1523;
     --bg3: var(--card-bg);
     --white: var(--text);
     --muted: var(--text-muted);
-    --accent2: #b3a5ff;
-    --accent-rgb: 124, 92, 255;
-    --accent2-rgb: 179, 165, 255;
-    --border: rgba(240, 237, 248, 0.12);
+    --accent2: #00ffd1;
+    --accent-rgb: 91, 140, 255;
+    --accent2-rgb: 0, 255, 209;
+    --border: #1f2937;
+    --surface: rgba(255,255,255,0.05);
+    --surface-strong: rgba(255,255,255,0.07);
+    --shadow-soft: 0 18px 48px rgba(3, 8, 20, 0.34);
+    --shadow-card: 0 24px 60px rgba(3, 8, 20, 0.4);
     --font-display: 'DM Sans', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-mono: var(--font-body);
@@ -35,7 +39,7 @@
     background: var(--bg);
     color: var(--white);
     font-family: var(--font-body);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.6;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -51,7 +55,7 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1;
   }
@@ -100,7 +104,19 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 9000;
-    opacity: 0.35;
+    opacity: 0.22;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      url("data:image/svg+xml,%3Csvg width='900' height='620' viewBox='0 0 900 620' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.22'%3E%3Cpath d='M-54 179C89 76 221 41 348 74C447 100 518 159 621 165C718 171 793 125 925 26' stroke='%235B8CFF' stroke-width='1.25'/%3E%3Cpath d='M-88 247C54 144 183 112 301 140C406 165 497 231 610 238C710 244 792 203 937 104' stroke='%2300FFD1' stroke-width='1.1'/%3E%3Cpath d='M-72 325C77 231 216 200 343 229C446 252 529 319 646 322C739 324 813 286 936 199' stroke='%235B8CFF' stroke-width='0.95'/%3E%3C/g%3E%3C/svg%3E") top left / min(70vw, 900px) auto no-repeat;
+    filter: blur(1.5px);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: -1;
   }
 
   /* NAV */
@@ -112,8 +128,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 24px 48px;
-    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
-    backdrop-filter: blur(2px);
+    background: linear-gradient(to bottom, rgba(11,15,25,0.9), rgba(11,15,25,0.2));
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
   }
 
   .nav-logo {
@@ -139,7 +156,7 @@
     text-transform: uppercase;
     color: var(--muted);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color 0.3s ease;
   }
 
   .nav-links a:hover { color: var(--accent); }
@@ -155,6 +172,19 @@
     overflow: hidden;
   }
 
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 14%;
+    left: -8%;
+    width: min(44vw, 560px);
+    aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.28), rgba(var(--accent2-rgb), 0.12) 34%, transparent 70%);
+    filter: blur(36px);
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
   .hero-bg-text {
     position: absolute;
     top: 50%;
@@ -162,7 +192,7 @@
     transform: translate(-50%, -50%);
     font-family: var(--font-display);
     font-size: clamp(120px, 18vw, 280px);
-    color: rgba(255,255,255,0.02);
+    color: rgba(230,234,242,0.03);
     white-space: nowrap;
     pointer-events: none;
     letter-spacing: -0.02em;
@@ -191,39 +221,93 @@
   .hero h1 {
     font-family: var(--font-display);
     font-size: clamp(64px, 10vw, 140px);
-    line-height: 0.92;
+    line-height: 0.98;
     letter-spacing: -0.01em;
-    margin-bottom: 32px;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
   }
 
   .hero h1 em {
-    font-style: italic;
+    font-style: normal;
     font-family: var(--font-body);
-    font-weight: 300;
-    font-size: 0.55em;
-    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.44em;
+    line-height: 1.16;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     display: block;
     letter-spacing: 0.02em;
+    margin-top: 0.12em;
+    padding-bottom: 0.02em;
   }
 
   .hero-bottom {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-top: 48px;
+    margin-top: 24px;
   }
 
   .hero-desc {
-    max-width: 380px;
+    max-width: 480px;
     font-size: 18px;
     color: var(--muted);
-    line-height: 1.75;
-    font-weight: 300;
+    line-height: 1.82;
+    font-weight: 500;
   }
 
   .hero-desc strong {
     color: var(--white);
-    font-weight: 400;
+    font-weight: 600;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  .button-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 14px 22px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .button-link:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .button-link.primary {
+    color: #09111f;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-color: transparent;
+    box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.22), 0 0 32px rgba(var(--accent2-rgb), 0.1);
+  }
+
+  .button-link.primary:hover {
+    box-shadow: 0 16px 36px rgba(var(--accent-rgb), 0.28), 0 0 40px rgba(var(--accent2-rgb), 0.14);
+  }
+
+  .button-link.secondary {
+    color: var(--white);
+    background: var(--surface);
+    border-color: rgba(255,255,255,0.08);
   }
 
   .scroll-hint {
@@ -286,8 +370,9 @@
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 28px 0;
-    background: var(--bg2);
+    background: rgba(255,255,255,0.03);
     position: relative;
+    backdrop-filter: blur(10px);
   }
   .brand-strip::before,
   .brand-strip::after {
@@ -329,12 +414,12 @@
     font-family: var(--font-display);
     font-size: 22px;
     letter-spacing: 0.15em;
-    color: rgba(240,236,228,0.32);
+    color: rgba(230,234,242,0.28);
     text-transform: uppercase;
     transition: color 0.3s;
     user-select: none;
   }
-  .brand-track:hover .brand-name { color: rgba(240,236,228,0.5); }
+  .brand-track:hover .brand-name { color: rgba(230,234,242,0.52); }
   .brand-dot {
     width: 5px; height: 5px;
     border-radius: 50%;
@@ -356,7 +441,10 @@
     background: var(--bg3);
     border: 1px solid var(--border);
     overflow: hidden;
-    border-radius: 24px;
+    border-radius: 16px;
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-card);
   }
 
   .showreel-wrap iframe {
@@ -374,8 +462,8 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
-    background: rgba(10,10,10,0.6);
-    backdrop-filter: blur(2px);
+    background: linear-gradient(180deg, rgba(11,15,25,0.18), rgba(11,15,25,0.62));
+    backdrop-filter: blur(6px);
     transition: opacity 0.4s ease;
     z-index: 2;
   }
@@ -384,11 +472,12 @@
   .play-btn {
     width: 72px; height: 72px;
     border: 1px solid rgba(var(--accent-rgb), 0.32);
-    border-radius: 50%;
+    border-radius: 999px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.04);
   }
 
   .play-btn::after {
@@ -411,13 +500,16 @@
     padding: 16px 0;
   }
   .stat-item {
-    background: var(--bg2);
+    background: var(--surface);
     padding: 48px 24px;
     text-align: center;
-    transition: background 0.3s;
-    border-radius: 20px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-soft);
   }
-  .stat-item:hover { background: var(--bg3); }
+  .stat-item:hover { background: var(--surface-strong); transform: translateY(-4px); box-shadow: var(--shadow-card); }
   .stat-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 72px;
@@ -463,30 +555,47 @@
     gap: 24px;
   }
 
+  .work-grid-portrait {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    align-items: start;
+  }
+
   .work-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.07);
     overflow: hidden;
     position: relative;
-    transition: border-color 0.3s, transform 0.3s;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     cursor: pointer;
-    border-radius: 24px;
+    border-radius: 16px;
     width: 100%;
     text-align: left;
     appearance: none;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-soft);
   }
 
   .work-card:hover {
     border-color: rgba(var(--accent-rgb), 0.26);
-    transform: translateY(-4px);
+    transform: translateY(-6px) scale(1.005);
+    box-shadow: var(--shadow-card);
   }
 
   .work-card-video {
     width: 100%;
     aspect-ratio: 16/9;
     position: relative;
-    background: #0d0d0d;
+    background: #111725;
     overflow: hidden;
+  }
+
+  .work-card-portrait {
+    max-width: 320px;
+    justify-self: center;
+  }
+
+  .work-card-portrait .work-card-video {
+    aspect-ratio: 9/16;
   }
 
   .work-card-video iframe {
@@ -502,19 +611,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,0.4);
-    transition: background 0.3s, opacity 0.3s;
+    background: linear-gradient(180deg, rgba(11,15,25,0.18), rgba(11,15,25,0.54));
+    transition: background 0.3s ease, opacity 0.3s ease;
     cursor: none;
   }
 
   .work-card:hover .work-card-video-overlay {
-    background: rgba(0,0,0,0.1);
+    background: rgba(11,15,25,0.14);
   }
 
   .work-card-play {
     width: 48px; height: 48px;
     border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 50%;
+    border-radius: 999px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -562,7 +671,7 @@
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.92);
+    background: rgba(11,15,25,0.88);
     z-index: 500;
     display: flex;
     align-items: center;
@@ -583,8 +692,9 @@
     width: 90vw;
     max-width: 1000px;
     position: relative;
-    border-radius: 24px;
+    border-radius: 16px;
     overflow: hidden;
+    box-shadow: var(--shadow-card);
   }
 
   .modal-inner iframe {
@@ -657,9 +767,10 @@
     max-height: 500px;
     margin-bottom: 40px;
     overflow: hidden;
-    background: #050505;
+    background: #0f1523;
     border: 1px solid var(--border);
-    border-radius: 24px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
   }
   .about-photo img {
     width: 100%;
@@ -692,15 +803,17 @@
   }
 
   .skill-block {
-    background: var(--bg3);
+    background: var(--surface);
     padding: 32px 28px;
-    border: 1px solid var(--border);
-    transition: border-color 0.2s;
-    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 16px;
     min-height: 230px;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-soft);
   }
 
-  .skill-block:hover { border-color: rgba(var(--accent-rgb), 0.2); }
+  .skill-block:hover { border-color: rgba(var(--accent-rgb), 0.24); transform: translateY(-4px); box-shadow: var(--shadow-card); }
 
   .skill-block-label {
     font-family: var(--font-mono);
@@ -767,7 +880,7 @@
   .exp-current {
     display: inline-block;
     background: var(--accent);
-    color: #120a05;
+    color: #ffffff;
     font-family: var(--font-mono);
     font-size: 9px;
     letter-spacing: 0.15em;
@@ -813,7 +926,7 @@
     transform: translate(-50%, -50%);
     font-family: var(--font-display);
     font-size: clamp(80px, 14vw, 200px);
-    color: rgba(255,255,255,0.02);
+    color: rgba(230,234,242,0.03);
     white-space: nowrap;
     pointer-events: none;
     letter-spacing: -0.02em;
@@ -851,8 +964,13 @@
     text-transform: uppercase;
     color: var(--white);
     text-decoration: none;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     cursor: pointer;
+    border-radius: 14px;
+    background: var(--surface);
+    border-color: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-soft);
   }
 
   .contact-link:hover {
@@ -862,9 +980,10 @@
   }
 
   .contact-link.primary {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #120a05;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-color: transparent;
+    color: #09111f;
+    box-shadow: 0 14px 32px rgba(var(--accent-rgb), 0.2);
   }
 
   .contact-link.primary:hover {
@@ -908,22 +1027,28 @@
   .testi-slide {
     flex: 0 0 calc(50% - 8px);
     min-width: 0;
+    display: flex;
   }
   .testi-card {
-    background: var(--bg2);
-    padding: 40px 32px;
+    background: var(--surface);
+    padding: 32px 28px;
     position: relative;
     overflow: hidden;
     transition: background 0.3s, transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    border-radius: 24px;
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 14px 34px rgba(0,0,0,0.22);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 100%;
+    backdrop-filter: blur(10px);
   }
   .testi-card:hover {
-    background: var(--bg3);
+    background: var(--surface-strong);
     transform: translateY(-4px);
     border-color: rgba(var(--accent-rgb), 0.2);
-    box-shadow: 0 22px 48px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-card);
   }
   .testi-card::before {
     content: '\201C';
@@ -947,16 +1072,21 @@
   }
   .testi-card:hover::after { transform: scaleX(1); }
   .testi-quote {
-    font-size: 17px;
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.7;
     color: var(--muted);
-    margin-bottom: 28px;
-    font-style: italic;
+    margin-bottom: 24px;
+    font-style: normal;
     position: relative;
     z-index: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 190px;
   }
   .testi-quote strong { color: var(--white); font-style: normal; font-weight: 400; }
-  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .testi-author { display: flex; align-items: center; gap: 14px; margin-top: auto; }
   .testi-avatar {
     width: 56px; height: 56px;
     border-radius: 50%;
@@ -981,7 +1111,7 @@
   }
   .testi-avatar.logo {
     padding: 10px;
-    background: #000;
+    background: rgba(255,255,255,0.08);
   }
   .testi-avatar.logo img {
     object-fit: contain;
@@ -1002,9 +1132,9 @@
   .testi-btn {
     width: 52px;
     height: 52px;
-    border-radius: 50%;
+    border-radius: 14px;
     border: 1px solid var(--border);
-    background: var(--bg3);
+    background: var(--surface);
     color: var(--white);
     display: inline-flex;
     align-items: center;
@@ -1033,7 +1163,7 @@
     height: 10px;
     border-radius: 999px;
     border: none;
-    background: rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.2);
     transition: width 0.25s ease, background 0.25s ease;
     cursor: pointer;
   }
@@ -1129,6 +1259,7 @@
     .hero-tag { margin-bottom: 18px; }
     .hero h1 { font-size: clamp(52px, 17vw, 88px); margin-bottom: 24px; }
     .hero-desc { max-width: 100%; font-size: 16px; line-height: 1.65; }
+    .hero-actions { margin-top: 24px; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .about-text { padding-top: 0; }
     .about-photo { width: 100%; margin-bottom: 28px; }
@@ -1144,11 +1275,13 @@
     footer { flex-direction: column; gap: 12px; text-align: center; }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .work-grid { grid-template-columns: 1fr; }
+    .work-grid-portrait { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .work-category { margin-bottom: 56px; }
     .work-card-info { padding: 18px 18px 20px; }
     .work-card-title { font-size: 20px; }
     .testi-slide { flex-basis: 100%; }
-    .testi-card { padding: 32px 24px; }
+    .testi-card { padding: 28px 24px; }
+    .testi-quote { min-height: auto; -webkit-line-clamp: 6; }
     .testi-controls { flex-direction: column; align-items: flex-start; }
     .contact-section { padding: 120px 24px 96px; }
     .contact-sub { font-size: 16px; margin-bottom: 40px; }
@@ -1176,6 +1309,8 @@
       margin-top: 10px;
     }
     .hero-bottom { gap: 28px; margin-top: 32px; }
+    .hero-actions { width: 100%; }
+    .button-link { width: 100%; }
     .brand-strip { padding: 20px 0; }
     .brand-logo-item { padding: 0 30px; gap: 30px; }
     .brand-name { font-size: 16px; }
@@ -1184,8 +1319,10 @@
     .showreel-wrap,
     .work-card,
     .about-photo,
-    .testi-card { border-radius: 18px; }
+    .testi-card { border-radius: 14px; }
     .work-grid { gap: 18px; }
+    .work-grid-portrait { grid-template-columns: 1fr; }
+    .work-card-portrait { max-width: 100%; }
     .work-category-label {
       gap: 10px;
       align-items: flex-start;
@@ -1201,8 +1338,8 @@
     .exp-role { font-size: 24px; }
     .exp-company,
     .exp-desc { font-size: 15px; }
-    .testi-card::before { font-size: 86px; left: 18px; }
-    .testi-quote { font-size: 15px; line-height: 1.7; margin-bottom: 22px; }
+    .testi-card::before { font-size: 82px; left: 18px; }
+    .testi-quote { font-size: 15px; line-height: 1.65; margin-bottom: 22px; }
     .testi-controls { gap: 14px; margin-top: 20px; }
     .testi-nav { width: 100%; justify-content: space-between; }
     .testi-btn {
@@ -1253,10 +1390,16 @@
     <em>&mdash; crafting stories that move</em>
   </h1>
   <div class="hero-bottom">
-    <p class="hero-desc">
-      I don't just edit footage.<br>
-      I build <strong>visual narratives with purpose</strong> &mdash; where every cut, every frame, every sound decision moves the audience exactly where it needs to go.
-    </p>
+    <div>
+      <p class="hero-desc">
+        I don't just edit footage.<br>
+        I build <strong>visual narratives with purpose</strong> &mdash; where every cut, every frame, every sound decision moves the audience exactly where it needs to go.
+      </p>
+      <div class="hero-actions">
+        <a class="button-link primary" href="#showreel">Watch Showreel</a>
+        <a class="button-link secondary" href="#work">View Work</a>
+      </div>
+    </div>
     <div class="scroll-hint">
       <div class="scroll-line"></div>
       <span>Scroll</span>
@@ -1388,9 +1531,9 @@
       Short-Form Content
       <span>Fast, engaging, high-impact visuals</span>
     </div>
-    <div class="work-grid">
+    <div class="work-grid work-grid-portrait">
 
-      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/zHxI_-M1sOo?autoplay=1&rel=0" aria-label="Open India Tour Promo for Satinder Sartaaj">
+      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/zHxI_-M1sOo?autoplay=1&rel=0" aria-label="Open India Tour Promo for Satinder Sartaaj">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/zHxI_-M1sOo?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -1401,7 +1544,7 @@
         </div>
       </button>
 
-      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/ULn82D31b24?autoplay=1&rel=0" aria-label="Open Creative Showcase personal project">
+      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/ULn82D31b24?autoplay=1&rel=0" aria-label="Open Creative Showcase personal project">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/ULn82D31b24?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -1412,7 +1555,7 @@
         </div>
       </button>
 
-      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/PXAiUNwJIpE?autoplay=1&rel=0" aria-label="Open Brand Awareness Ad for PixelCrayons">
+      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/PXAiUNwJIpE?autoplay=1&rel=0" aria-label="Open Brand Awareness Ad for PixelCrayons">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/PXAiUNwJIpE?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -1423,7 +1566,7 @@
         </div>
       </button>
 
-      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/Cpt7PXJ-Y8I?autoplay=1&rel=0" aria-label="Open Social Media Reel for ValueCoders">
+      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/Cpt7PXJ-Y8I?autoplay=1&rel=0" aria-label="Open Social Media Reel for ValueCoders">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/Cpt7PXJ-Y8I?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -1555,7 +1698,7 @@
 
         <article class="testi-slide">
           <div class="testi-card">
-            <p class="testi-quote">Sarthak designed our digital assets with a <strong>level of consistency and attention to detail</strong> that made a real difference to how our brand was perceived online. He doesn't just execute &mdash; he thinks about the bigger picture.</p>
+            <p class="testi-quote">Sarthak designed our digital assets with a <strong>level of consistency and attention to detail</strong> that genuinely improved how our brand was perceived online. He doesn't just execute &mdash; he thinks bigger.</p>
             <div class="testi-author">
               <div class="testi-avatar">
                 <img src="hemant-gupta.png" alt="Hemant Gupta">
@@ -1570,7 +1713,7 @@
 
         <article class="testi-slide">
           <div class="testi-card">
-            <p class="testi-quote">Working with Sarthak at Digilok was seamless. He adapted quickly across shoots and editing, delivering content that maintained both quality and consistency. Fast, dependable, and focused, he handled every project with strong ownership.</p>
+            <p class="testi-quote">Working with Sarthak at Digilok was seamless. He adapted quickly across shoots and editing, delivering content that stayed consistent and high-quality. Fast, dependable, and focused, he handled every project with strong ownership.</p>
             <div class="testi-author">
               <div class="testi-avatar">
                 <img src="akash-mishra.png" alt="Akash Mishra">
@@ -1585,7 +1728,7 @@
 
         <article class="testi-slide">
           <div class="testi-card">
-            <p class="testi-quote">During our Mahakumbh 2026 coverage, Sarthak supported me with the kind of reliability every newsroom needs in high-pressure reporting. He helped keep the content pipeline moving, coordinated quickly on urgent requirements, and made sure our on-ground storytelling stayed sharp and timely.</p>
+            <p class="testi-quote">During our Mahakumbh 2026 coverage, Sarthak brought the reliability every newsroom needs under pressure. He kept the content pipeline moving, coordinated quickly on urgent requirements, and made sure our on-ground storytelling stayed sharp and timely.</p>
             <div class="testi-author">
               <div class="testi-avatar">
                 <img src="Abhinav Pandey.webp" alt="Abhinav Pandey">
@@ -1600,7 +1743,7 @@
 
         <article class="testi-slide">
           <div class="testi-card">
-            <p class="testi-quote">Healthcare content is difficult &mdash; it needs to be <strong>accurate, warm, and trustworthy</strong> all at once. Sarthak understood that without us having to over-explain. The reels he created for Vrinda Fertility consistently drove engagement and patient inquiries.</p>
+            <p class="testi-quote">Healthcare content is difficult &mdash; it needs to be <strong>accurate, warm, and trustworthy</strong> all at once. Sarthak understood that instantly. The reels he created for Vrinda Fertility consistently drove engagement and patient inquiries.</p>
             <div class="testi-author">
               <div class="testi-avatar">
                 <img src="anushka-madaan.png" alt="Anushka Madaan">
@@ -1630,7 +1773,7 @@
 
         <article class="testi-slide">
           <div class="testi-card">
-            <p class="testi-quote">Sarthak brought clarity and structure to our motion projects that improved how our content was perceived. His work was sharp, on-brand, and aligned with our communication goals. Consistently reliable and detail-oriented, he was someone we could trust for end-to-end delivery.</p>
+            <p class="testi-quote">Sarthak brought clarity and structure to our motion projects in a way that improved how our content was perceived. His work was sharp, on-brand, and aligned with our communication goals. He was someone we could trust for end-to-end delivery.</p>
             <div class="testi-author">
               <div class="testi-avatar logo">
                 <img src="vinove-logo.png" alt="Vinove Software & Services">
@@ -1645,7 +1788,7 @@
 
         <article class="testi-slide">
           <div class="testi-card">
-            <p class="testi-quote">Sarthak brought our university campaigns to life with a clarity we hadn't seen before. The motion work he delivered for APU was <strong>sharp, on-brand, and exactly what our audience responded to</strong>. Genuinely one of the most reliable creatives we've worked with.</p>
+            <p class="testi-quote">Sarthak brought our university campaigns to life with a clarity we hadn't seen before. The motion work he delivered for APU was <strong>sharp, on-brand, and exactly what our audience responded to</strong>. One of the most reliable creatives we've worked with.</p>
             <div class="testi-author">
               <div class="testi-avatar">
                 <img src="dharmpreet-singh.png" alt="Dharmpreet Singh">
