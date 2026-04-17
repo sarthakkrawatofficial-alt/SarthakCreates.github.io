@@ -9,14 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --bg: #0a0a0a;
-    --bg2: #111111;
-    --bg3: #161616;
-    --white: #f0ece4;
-    --muted: #b0b0b0;
-    --accent: #1fa2ff;
-    --accent2: #0095ff;
-    --border: rgba(255,255,255,0.06);
+    --bg: #0b0b14;
+    --accent: #7c5cff;
+    --text: #f0edf8;
+    --text-muted: #8f89a8;
+    --card-bg: #141422;
+    --bg2: #10101b;
+    --bg3: var(--card-bg);
+    --white: var(--text);
+    --muted: var(--text-muted);
+    --accent2: #b3a5ff;
+    --accent-rgb: 124, 92, 255;
+    --accent2-rgb: 179, 165, 255;
+    --border: rgba(240, 237, 248, 0.12);
     --font-display: 'DM Sans', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-mono: var(--font-body);
@@ -72,7 +77,7 @@
   }
   .cursor-ring {
     width: 36px; height: 36px;
-    border: 1px solid rgba(255,90,31,0.4);
+    border: 1px solid rgba(var(--accent-rgb), 0.38);
     border-radius: 50%;
     position: fixed;
     top: 0; left: 0;
@@ -84,7 +89,7 @@
   }
   .cursor-ring.hovered {
     width: 60px; height: 60px;
-    border-color: rgba(255,90,31,0.7);
+    border-color: rgba(var(--accent-rgb), 0.68);
   }
 
   /* Noise overlay */
@@ -378,7 +383,7 @@
 
   .play-btn {
     width: 72px; height: 72px;
-    border: 1px solid rgba(255,90,31,0.3);
+    border: 1px solid rgba(var(--accent-rgb), 0.32);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -472,7 +477,7 @@
   }
 
   .work-card:hover {
-    border-color: rgba(255,90,31,0.2);
+    border-color: rgba(var(--accent-rgb), 0.26);
     transform: translateY(-4px);
   }
 
@@ -527,7 +532,7 @@
 
   .work-card:hover .work-card-play {
     border-color: var(--accent);
-    background: rgba(255,90,31,0.1);
+    background: rgba(var(--accent-rgb), 0.14);
   }
 
   .work-card:hover .work-card-play::after {
@@ -695,7 +700,7 @@
     min-height: 230px;
   }
 
-  .skill-block:hover { border-color: rgba(255,90,31,0.15); }
+  .skill-block:hover { border-color: rgba(var(--accent-rgb), 0.2); }
 
   .skill-block-label {
     font-family: var(--font-mono);
@@ -762,7 +767,7 @@
   .exp-current {
     display: inline-block;
     background: var(--accent);
-    color: #000;
+    color: #120a05;
     font-family: var(--font-mono);
     font-size: 9px;
     letter-spacing: 0.15em;
@@ -853,13 +858,13 @@
   .contact-link:hover {
     border-color: var(--accent);
     color: var(--accent);
-    background: rgba(255,90,31,0.04);
+    background: rgba(var(--accent-rgb), 0.1);
   }
 
   .contact-link.primary {
     background: var(--accent);
     border-color: var(--accent);
-    color: #000;
+    color: #120a05;
   }
 
   .contact-link.primary:hover {
@@ -917,7 +922,7 @@
   .testi-card:hover {
     background: var(--bg3);
     transform: translateY(-4px);
-    border-color: rgba(255,90,31,0.14);
+    border-color: rgba(var(--accent-rgb), 0.2);
     box-shadow: 0 22px 48px rgba(0,0,0,0.3);
   }
   .testi-card::before {
@@ -926,7 +931,7 @@
     top: 8px; left: 24px;
     font-family: var(--font-display);
     font-size: 110px;
-    color: rgba(255,90,31,0.06);
+    color: rgba(var(--accent2-rgb), 0.12);
     line-height: 1;
     pointer-events: none;
   }
@@ -1008,7 +1013,7 @@
     cursor: pointer;
   }
   .testi-btn:hover {
-    border-color: rgba(255,90,31,0.35);
+    border-color: rgba(var(--accent-rgb), 0.4);
     color: var(--accent);
     transform: translateY(-2px);
   }
@@ -1107,7 +1112,7 @@
       flex-direction: column;
       position: fixed;
       top: 0; right: 0;
-      width: 260px;
+      width: min(82vw, 320px);
       height: 100vh;
       background: var(--bg2);
       border-left: 1px solid var(--border);
@@ -1121,16 +1126,92 @@
     .nav-links a { font-size: 13px; color: var(--white); }
     section { padding: 80px 24px; }
     .hero { padding: 0 24px 60px; }
+    .hero-tag { margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(52px, 17vw, 88px); margin-bottom: 24px; }
+    .hero-desc { max-width: 100%; font-size: 16px; line-height: 1.65; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .about-text { padding-top: 0; }
+    .about-photo { width: 100%; margin-bottom: 28px; }
     .skills-grid { grid-template-columns: 1fr; }
+    .skill-block { min-height: auto; padding: 26px 22px; }
     .exp-item { grid-template-columns: 1fr; gap: 12px; }
     .hero-bottom { flex-direction: column; gap: 40px; align-items: flex-start; }
+    .scroll-hint { display: none; }
+    .section-title { font-size: clamp(34px, 11vw, 54px); margin-bottom: 40px; }
+    .section-label { font-size: 12px; }
+    .stat-item { padding: 32px 16px; }
+    .stat-num { font-size: 54px; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .work-grid { grid-template-columns: 1fr; }
+    .work-category { margin-bottom: 56px; }
+    .work-card-info { padding: 18px 18px 20px; }
+    .work-card-title { font-size: 20px; }
     .testi-slide { flex-basis: 100%; }
+    .testi-card { padding: 32px 24px; }
     .testi-controls { flex-direction: column; align-items: flex-start; }
+    .contact-section { padding: 120px 24px 96px; }
+    .contact-sub { font-size: 16px; margin-bottom: 40px; }
+    .contact-links { width: 100%; gap: 14px; }
+    .contact-link { width: 100%; justify-content: center; padding: 16px 20px; }
+    .modal-inner { width: calc(100vw - 24px); }
+    .modal-close { top: 12px; right: 12px; background: rgba(0,0,0,0.75); }
+  }
+
+  @media (max-width: 540px) {
+    nav { padding: 18px 18px; }
+    section { padding: 64px 18px; }
+    .hero {
+      min-height: auto;
+      padding: 96px 18px 44px;
+    }
+    .hero-bg-text,
+    .contact-bg-text { display: none; }
+    .hero h1 {
+      font-size: clamp(44px, 16vw, 68px);
+      line-height: 0.98;
+    }
+    .hero h1 em {
+      font-size: 0.48em;
+      margin-top: 10px;
+    }
+    .hero-bottom { gap: 28px; margin-top: 32px; }
+    .brand-strip { padding: 20px 0; }
+    .brand-logo-item { padding: 0 30px; gap: 30px; }
+    .brand-name { font-size: 16px; }
+    .stats-bar { grid-template-columns: 1fr; gap: 12px; }
+    .showreel-section { padding-top: 48px; }
+    .showreel-wrap,
+    .work-card,
+    .about-photo,
+    .testi-card { border-radius: 18px; }
+    .work-grid { gap: 18px; }
+    .work-category-label {
+      gap: 10px;
+      align-items: flex-start;
+      flex-direction: column;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+    .about-grid { gap: 32px; }
+    .about-text p { font-size: 16px; line-height: 1.7; }
+    .about-highlight { font-size: clamp(28px, 10vw, 38px); margin-bottom: 24px; }
+    .skills-grid { gap: 12px; }
+    .exp-item { padding: 28px 0; }
+    .exp-role { font-size: 24px; }
+    .exp-company,
+    .exp-desc { font-size: 15px; }
+    .testi-card::before { font-size: 86px; left: 18px; }
+    .testi-quote { font-size: 15px; line-height: 1.7; margin-bottom: 22px; }
+    .testi-controls { gap: 14px; margin-top: 20px; }
+    .testi-nav { width: 100%; justify-content: space-between; }
+    .testi-btn {
+      width: 48px;
+      height: 48px;
+    }
+    .contact-section { padding: 92px 18px 80px; }
+    .contact-link { font-size: 11px; letter-spacing: 0.12em; }
+    footer { padding: 28px 18px; }
   }
 </style>
 </head>
