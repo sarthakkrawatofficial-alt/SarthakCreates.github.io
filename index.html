@@ -582,7 +582,7 @@
   .work-grid-portrait {
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     align-items: start;
-    gap: 12px;
+    gap: 8px;
   }
 
   .work-card {
@@ -1101,12 +1101,12 @@
   }
   .testi-track {
     display: flex;
-    gap: 12px;
+    gap: 24px;
     transition: transform 0.45s ease;
     will-change: transform;
   }
   .testi-slide {
-    flex: 0 0 100%;
+    flex: 0 0 calc((100% - 24px) / 3);
     min-width: 0;
     display: flex;
   }
@@ -1655,6 +1655,7 @@
         <div class="work-card-info">
           <div class="work-card-title">India Tour Promo</div>
           <div class="work-card-meta">SATINDAR SARTAAJ</div>
+          <div>High-energy event promo cut for social reach and pre-show audience build-up.</div>
         </div>
       </button>
 
@@ -1666,6 +1667,7 @@
         <div class="work-card-info">
           <div class="work-card-title">Creative Showcase</div>
           <div class="work-card-meta">PERSONAL</div>
+          <div>Personal motion reel demonstrating visual range across style, pacing, and design systems.</div>
         </div>
       </button>
 
