@@ -166,8 +166,8 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 48px 80px;
+    justify-content: center;
+    padding: 120px 48px 80px;
     position: relative;
     overflow: hidden;
   }
@@ -245,14 +245,15 @@
   }
 
   .hero-bottom {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
     align-items: flex-end;
     margin-top: 24px;
   }
 
   .hero-desc {
-    max-width: 480px;
+    max-width: 650px;
     font-size: 18px;
     color: var(--muted);
     line-height: 1.82;
@@ -434,6 +435,21 @@
     padding-top: 80px;
   }
 
+  .showreel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .showreel-text {
+    max-width: 480px;
+  }
+
+  .showreel-testi {
+    margin-top: 36px;
+  }
+
   .showreel-wrap {
     position: relative;
     width: min(100%, 1080px);
@@ -445,7 +461,14 @@
     background: var(--surface);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-card);
-    margin: 0 auto;
+    margin: 0;
+  }
+
+  .showreel-desc {
+    margin-top: 20px;
+    max-width: 600px;
+    color: var(--text-muted);
+    line-height: 1.7;
   }
 
   .showreel-wrap iframe {
@@ -1078,18 +1101,18 @@
   }
   .testi-track {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     transition: transform 0.45s ease;
     will-change: transform;
   }
   .testi-slide {
-    flex: 0 0 calc(50% - 8px);
+    flex: 0 0 100%;
     min-width: 0;
     display: flex;
   }
   .testi-card {
     background: var(--surface);
-    padding: 32px 28px;
+    padding: 22px 20px;
     position: relative;
     overflow: hidden;
     transition: background 0.3s, transform 0.3s, box-shadow 0.3s, border-color 0.3s;
@@ -1100,6 +1123,7 @@
     flex-direction: column;
     min-height: 100%;
     width: 100%;
+    max-width: 520px;
     backdrop-filter: blur(10px);
   }
   .testi-card:hover {
@@ -1138,10 +1162,10 @@
     position: relative;
     z-index: 1;
     display: -webkit-box;
-    -webkit-line-clamp: 7;
+    -webkit-line-clamp: unset;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    min-height: 190px;
+    min-height: auto;
   }
   .testi-quote strong { color: var(--white); font-style: normal; font-weight: 400; }
   .testi-author { display: flex; align-items: center; gap: 14px; margin-top: auto; }
@@ -1324,7 +1348,7 @@
     .skills-grid { grid-template-columns: 1fr; }
     .skill-block { min-height: auto; padding: 26px 22px; }
     .exp-item { grid-template-columns: 1fr; gap: 12px; }
-    .hero-bottom { flex-direction: column; gap: 40px; align-items: flex-start; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 40px; align-items: flex-start; }
     .scroll-hint { display: none; }
     .section-title { font-size: clamp(34px, 11vw, 54px); margin-bottom: 40px; }
     .section-label { font-size: 12px; }
@@ -1337,9 +1361,12 @@
     .work-category { margin-bottom: 56px; }
     .work-card-info { padding: 18px 18px 20px; }
     .work-card-title { font-size: 20px; }
+    .showreel-grid { grid-template-columns: 1fr; gap: 32px; }
+    .showreel-text { max-width: 100%; }
+    .showreel-video { width: 100%; }
     .testi-slide { flex-basis: 100%; }
-    .testi-card { padding: 28px 24px; }
-    .testi-quote { min-height: auto; -webkit-line-clamp: 6; }
+    .testi-card { padding: 22px 20px; max-width: 100%; }
+    .testi-quote { min-height: auto; -webkit-line-clamp: unset; }
     .testi-controls { flex-direction: column; align-items: flex-start; }
     .contact-section { padding: 120px 24px 96px; }
     .contact-sub { font-size: 16px; margin-bottom: 40px; }
@@ -1374,6 +1401,7 @@
     .brand-name { font-size: 16px; }
     .stats-bar { grid-template-columns: 1fr; gap: 12px; }
     .showreel-section { padding-top: 48px; }
+    .showreel-grid { gap: 24px; }
     .showreel-wrap,
     .work-card,
     .about-photo,
@@ -1442,16 +1470,17 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg-text">MOTION</div>
-  <div class="hero-tag">Motion Designer & Video Editor</div>
+  <div class="hero-tag">Brand films. Product explainers. Social content.</div>
   <h1>
-    Sarthak<br>Rawat
-    <em>&mdash; crafting stories that move</em>
+    Sarthak Rawat<br>
+    <em>Motion Designer &amp; Video Editor</em>
   </h1>
   <div class="hero-bottom">
     <div>
       <p class="hero-desc">
-        I don't just edit footage.<br>
-        I build <strong>visual narratives with purpose</strong> &mdash; where every cut, every frame, every sound decision moves the audience exactly where it needs to go.
+        Built to perform &mdash; not just to look good.<br><br>
+        I work across the full production pipeline &mdash; from script and shoot to final cut &mdash; which means fewer handoffs, faster turnarounds, and output that's intentional at every frame. Currently building motion for Vinove&rsquo;s product suite (Workstatus, PixelCrayons, ValueCoders). Previously handled creative across 7 brand accounts at Digiron.<br><br>
+        250+ projects. 10+ brands. 3.5+ years of end-to-end execution.
       </p>
       <div class="hero-actions">
         <a class="button-link primary" href="#showreel">Watch Showreel</a>
@@ -1475,15 +1504,15 @@
   </div>
   <div class="stat-item">
     <div class="stat-num">10+</div>
-    <div class="stat-label">Brands Served</div>
+    <div class="stat-label">Brands &amp; Clients</div>
   </div>
   <div class="stat-item">
     <div class="stat-num">3.5+</div>
-    <div class="stat-label">Years Experience</div>
+    <div class="stat-label">Years, Full-Pipeline</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">&infin;</div>
-    <div class="stat-label">Frames Per Story</div>
+    <div class="stat-num">5+</div>
+    <div class="stat-label">Industries Covered</div>
   </div>
 </div>
 
@@ -1519,14 +1548,38 @@
 
 <!-- SHOWREEL -->
 <section class="showreel-section" id="showreel">
-  <div class="section-label">001 &mdash; STORIES IN MOTION</div>
-  <div class="section-title fade-in">THE SHOWREEL</div>
-  <div class="showreel-wrap fade-in">
-    <iframe id="showreelFrame" src="https://www.youtube.com/embed/jxLzLvvID4c?rel=0&modestbranding=1" title="Sarthak Rawat showreel" loading="lazy" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-    <button class="showreel-placeholder" id="showreelCover" type="button" aria-label="Play showreel 2025">
-      <div class="play-btn"></div>
-      <p style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)">Play Showreel 2025</p>
-    </button>
+  <div class="showreel-grid">
+    <div class="showreel-text">
+      <div class="section-label">001 &mdash; STORIES IN MOTION</div>
+      <div class="section-title fade-in">THE SHOWREEL</div>
+      <div class="section-label fade-in">TRUSTED BY BRANDS</div>
+      <article class="showreel-testi testi-slide fade-in">
+        <div class="testi-card">
+          <p class="testi-quote"><strong>He understood healthcare content immediately and delivered reels that consistently drove engagement and patient inquiries.</strong></p>
+          <p class="testi-quote">Healthcare content is difficult &mdash; it needs to be <strong>accurate, warm, and trustworthy</strong> all at once. Sarthak understood that instantly. The reels he created for Vrinda Fertility consistently drove engagement and patient inquiries.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="anushka-madaan.png" alt="Anushka Madaan">
+            </div>
+            <div>
+              <div class="testi-name">Anushka Madaan</div>
+              <div class="testi-role">Vrinda Fertility</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="showreel-video">
+      <div class="showreel-wrap fade-in">
+        <iframe id="showreelFrame" src="https://www.youtube.com/embed/jxLzLvvID4c?rel=0&modestbranding=1" title="Sarthak Rawat showreel" loading="lazy" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+        <button class="showreel-placeholder" id="showreelCover" type="button" aria-label="Play showreel 2025">
+          <div class="play-btn"></div>
+          <p style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)">Play Showreel 2025</p>
+        </button>
+      </div>
+      <p class="showreel-desc fade-in">Three years of brand films, product explainers, and digital campaigns &mdash; compressed into two minutes. Watch how the work holds up across industries.</p>
+      <p class="fade-in">Showreel 2025 &middot; Motion + Editing</p>
+    </div>
   </div>
 </section>
 
@@ -1541,7 +1594,7 @@
   <div class="work-category fade-in">
     <div class="work-category-label">
       Long-Form Content
-      <span>Story-driven films built for brands, platforms, and impact</span>
+      <span>Brand films, product explainers, and documentary-style edits &mdash; built for YouTube, campaigns, and brand storytelling.</span>
     </div>
     <div class="work-grid">
 
@@ -1552,6 +1605,7 @@
           <div class="work-card-info">
             <div class="work-card-title">Product Explainer Video</div>
             <div class="work-card-meta">WORKSTATUS</div>
+            <div>SaaS product explainer built to simplify features and reduce viewer drop-off.</div>
           </div>
         </div>
       </button>
@@ -1565,6 +1619,7 @@
     <div class="work-card-info">
       <div class="work-card-title">Podcast Film</div>
       <div class="work-card-meta">ReadersBooksClub</div>
+      <div>Long-form podcast edit structured for narrative pacing and audience retention.</div>
     </div>
   </div>
 </button>
@@ -1576,6 +1631,7 @@
           <div class="work-card-info">
             <div class="work-card-title">Documentary-Style Video</div>
             <div class="work-card-meta">CRICCULT</div>
+            <div>Story-driven documentary edit designed to build emotional engagement and brand depth.</div>
           </div>
         </div>
       </button>
@@ -1587,7 +1643,7 @@
   <div class="work-category fade-in">
     <div class="work-category-label">
       Short-Form Content
-      <span>Fast, engaging, high-impact visuals</span>
+      <span>High-retention reels, promos, and social ads &mdash; designed for fast engagement where attention is limited.</span>
     </div>
     <div class="work-grid work-grid-portrait">
 
@@ -1621,6 +1677,7 @@
         <div class="work-card-info">
           <div class="work-card-title">Brand Awareness Ad</div>
           <div class="work-card-meta">PIXELCRAYONS</div>
+          <div>Short-form ad built to grab attention and communicate value quickly.</div>
         </div>
       </button>
 
@@ -1632,6 +1689,7 @@
         <div class="work-card-info">
           <div class="work-card-title">Social Media Reel</div>
           <div class="work-card-meta">VALUECODERS</div>
+          <div>B2B social reel designed to make technical content engaging and accessible.</div>
         </div>
       </button>
 
@@ -1686,10 +1744,10 @@
       </div>
     </div>
     <div class="about-text fade-in visible">
-      <p>My journey started in <strong>graphic design</strong> &mdash; composition, typography, visual systems. Those principles didn't stay in design. They became the foundation of everything I do in motion.</p>
-      <p>Most editors work with footage. I work with <strong>intent</strong>. I've been across the full pipeline &mdash; scripting, shoot setup, lighting, post-production, final delivery &mdash; which means I catch problems before they become problems, and I push ideas before the client knows to ask for more.</p>
-      <p>Currently at <strong>Vinove Software & Services</strong>, turning complex software into motion that actually connects with people. Before that, I ran creative for 7 brands simultaneously at Digiron &mdash; building visual identities from scratch, not just executing briefs.</p>
-      <p>I believe the best motion design is <strong>invisible</strong>. The audience feels the emotion before they notice the craft. That's the standard I work to.</p>
+      <p>My foundation is <strong>graphic design</strong> &mdash; composition, typography, and visual systems. That thinking now drives how I build motion.</p>
+      <p>I&rsquo;ve worked across the full pipeline &mdash; scripting, shoot setup, lighting, post-production, and delivery &mdash; allowing better decisions at every stage.</p>
+      <p>At <strong>Vinove Software &amp; Services</strong>, I create motion for product brands like Workstatus, PixelCrayons, and ValueCoders. Before that, I handled creative across 7 brands at Digiron.</p>
+      <p>The best motion design is <strong>invisible</strong>. The audience feels it before they notice it.</p>
     </div>
   </div>
 </section>
@@ -1877,8 +1935,8 @@
 <section class="contact-section" id="contact">
   <div class="contact-bg-text">CONTACT</div>
   <div class="section-label">006 &mdash; Let's Talk</div>
-  <div class="section-title fade-in">GOT A PROJECT?</div>
-  <p class="contact-sub fade-in">Brand film, product explainer, social campaign &mdash; bring me the brief and I'll bring back something better than you imagined.</p>
+  <div class="section-title fade-in">HAVE A PROJECT THAT NEEDS TO LAND?</div>
+  <p class="contact-sub fade-in">Brand film, product explainer, or social campaign &mdash; send the brief. I&rsquo;ll come back with a clear approach on how to make it work.</p>
   <div class="contact-links fade-in">
     <a href="mailto:sarthakrawat23609@gmail.com" class="contact-link primary">Send an Email</a>
     <a href="tel:09598723609" class="contact-link">Call / WhatsApp</a>
@@ -2004,7 +2062,7 @@
 
   if (testiSlider && testiTrack && testiSlides.length) {
     let testiIndex = 0;
-    let perView = window.innerWidth <= 768 ? 1 : 2;
+    let perView = 1;
     let maxIndex = Math.max(0, testiSlides.length - perView);
     let autoplayId = null;
     const autoplayDelay = 4200;
@@ -2032,7 +2090,7 @@
 
     function updateTestiSlider() {
       const slideWidth = testiSlides[0].getBoundingClientRect().width;
-      const gap = 16;
+      const gap = 12;
       testiTrack.style.transform = `translateX(-${testiIndex * (slideWidth + gap)}px)`;
 
       Array.from(testiDots.children).forEach((dot, idx) => {
@@ -2041,7 +2099,7 @@
     }
 
     function syncTestiLayout() {
-      perView = window.innerWidth <= 768 ? 1 : 2;
+      perView = 1;
       maxIndex = Math.max(0, testiSlides.length - perView);
       testiIndex = wrapTestiIndex(testiIndex);
       buildTestiDots();
