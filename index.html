@@ -191,7 +191,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-display);
-    font-size: clamp(120px, 18vw, 280px);
+    font-size: clamp(80px, 14vw, 280px);
     color: rgba(230,234,242,0.03);
     white-space: nowrap;
     pointer-events: none;
@@ -437,17 +437,26 @@
 
   .showreel-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 60px;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 40px;
     align-items: center;
   }
 
   .showreel-text {
-    max-width: 480px;
+    max-width: 500px;
   }
 
   .showreel-testi {
     margin-top: 36px;
+  }
+
+  .showreel-video {
+    justify-self: start;
+    width: 100%;
+  }
+
+  .showreel-testi .testi-card {
+    padding-top: 34px;
   }
 
   .showreel-wrap {
@@ -1101,12 +1110,13 @@
   }
   .testi-track {
     display: flex;
-    gap: 24px;
-    transition: transform 0.45s ease;
+    gap: 18px;
+    align-items: stretch;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
   }
   .testi-slide {
-    flex: 0 0 calc((100% - 24px) / 3);
+    flex: 0 0 calc((100% - 36px) / 3);
     min-width: 0;
     display: flex;
   }
@@ -1123,7 +1133,6 @@
     flex-direction: column;
     min-height: 100%;
     width: 100%;
-    max-width: 520px;
     backdrop-filter: blur(10px);
   }
   .testi-card:hover {
@@ -1316,6 +1325,27 @@
   }
 
   /* RESPONSIVE */
+  @media (max-width: 1200px) {
+    .hero h1 { font-size: clamp(72px, 12vw, 140px); }
+    .section-title { font-size: clamp(48px, 7vw, 80px); }
+    .about-grid { gap: 70px; }
+    .work-grid { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+  }
+
+  @media (max-width: 1024px) {
+    nav { padding: 20px 32px; }
+    section { padding: 100px 32px; }
+    .hero { padding: 100px 32px 60px; }
+    .hero h1 { font-size: clamp(56px, 12vw, 120px); }
+    .about-grid { gap: 60px; }
+    .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .work-grid { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); }
+    .work-grid-portrait { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .stats-bar { grid-template-columns: repeat(3, 1fr); }
+    .testi-slide { flex-basis: calc((100% - 18px) / 2); }
+    .contact-section { padding: 140px 32px; }
+  }
+
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
     .nav-menu-btn { display: flex; }
@@ -1552,10 +1582,9 @@
     <div class="showreel-text">
       <div class="section-label">001 &mdash; STORIES IN MOTION</div>
       <div class="section-title fade-in">THE SHOWREEL</div>
-      <div class="section-label fade-in">TRUSTED BY BRANDS</div>
+      <div class="section-label fade-in">TRUSTED BY BRANDS ACROSS 5 INDUSTRIES</div>
       <article class="showreel-testi testi-slide fade-in">
         <div class="testi-card">
-          <p class="testi-quote"><strong>He understood healthcare content immediately and delivered reels that consistently drove engagement and patient inquiries.</strong></p>
           <p class="testi-quote">Healthcare content is difficult &mdash; it needs to be <strong>accurate, warm, and trustworthy</strong> all at once. Sarthak understood that instantly. The reels he created for Vrinda Fertility consistently drove engagement and patient inquiries.</p>
           <div class="testi-author">
             <div class="testi-avatar">
@@ -2056,18 +2085,25 @@
 
   // Testimonial slider
   const testiSlider = document.getElementById('testiSlider');
+  const testiViewport = testiSlider ? testiSlider.querySelector('.testi-viewport') : null;
   const testiTrack = document.getElementById('testiTrack');
   const testiSlides = testiTrack ? Array.from(testiTrack.querySelectorAll('.testi-slide')) : [];
   const testiPrev = document.getElementById('testiPrev');
   const testiNext = document.getElementById('testiNext');
   const testiDots = document.getElementById('testiDots');
 
-  if (testiSlider && testiTrack && testiSlides.length) {
+  if (testiSlider && testiViewport && testiTrack && testiSlides.length) {
     let testiIndex = 0;
     let perView = 1;
     let maxIndex = Math.max(0, testiSlides.length - perView);
     let autoplayId = null;
     const autoplayDelay = 4200;
+    let slideStep = 0;
+
+    function getTestiGap() {
+      const styles = window.getComputedStyle(testiTrack);
+      return parseFloat(styles.columnGap || styles.gap || '0') || 0;
+    }
 
     function wrapTestiIndex(index) {
       if (maxIndex <= 0) return 0;
@@ -2091,9 +2127,10 @@
     }
 
     function updateTestiSlider() {
-      const slideWidth = testiSlides[0].getBoundingClientRect().width;
-      const gap = 12;
-      testiTrack.style.transform = `translateX(-${testiIndex * (slideWidth + gap)}px)`;
+      const viewportWidth = testiViewport.getBoundingClientRect().width;
+      const maxTranslate = Math.max(0, testiTrack.scrollWidth - viewportWidth);
+      const translateX = Math.min(testiIndex * slideStep, maxTranslate);
+      testiTrack.style.transform = `translateX(-${translateX}px)`;
 
       Array.from(testiDots.children).forEach((dot, idx) => {
         dot.classList.toggle('active', idx === testiIndex);
@@ -2101,7 +2138,14 @@
     }
 
     function syncTestiLayout() {
-      perView = 1;
+      const slideWidth = testiSlides[0].getBoundingClientRect().width;
+      const gap = getTestiGap();
+      const viewportWidth = testiViewport.getBoundingClientRect().width;
+
+      slideStep = slideWidth + gap;
+      perView = slideStep > 0
+        ? Math.max(1, Math.floor((viewportWidth + gap) / slideStep))
+        : 1;
       maxIndex = Math.max(0, testiSlides.length - perView);
       testiIndex = wrapTestiIndex(testiIndex);
       buildTestiDots();
